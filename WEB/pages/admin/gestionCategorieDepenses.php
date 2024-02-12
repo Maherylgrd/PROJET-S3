@@ -27,7 +27,7 @@
                 <th>id Categorie Depense</th>
                 <th>Motif</th>
             </tr>
-            <?php for( $i=0;$i<count($tabdepense);$i++){
+            <?php for( $i=0;$i<count($tabcategoriedepense);$i++){
             ?>
             <tr>
                 <td><?php echo $tabcategoriedepense[$i]['motif'] ?></td>
