@@ -1,7 +1,7 @@
 <div id="ensemble">
     <div id="formulaire">
         <h2>Insertion Variation de Thé</h2>
-        <form>
+        <form action="traitementThe.php" method="get">
         <div class="mb-4">
             <label for="variete" class="form-label">Nom variete de the</label>
             <input type="text" class="form-control" id="variete" name="variete">
