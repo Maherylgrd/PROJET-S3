@@ -231,4 +231,23 @@ function getAllDepense() {
     mysqli_close($db);
     return $data;
 }
+function getTotalPoid() {
+    $db = dbconnect(); 
+    $query = "SELECT SUM(poids) as totalPoid FROM cueillette;";
+    $result = mysqli_query($db, $query);
+    $totalPoid = 0; 
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $totalPoid = $row['totalPoid'];
+        }
+    }
+
+    mysqli_free_result($result);
+    mysqli_close($db);
+
+    return $totalPoid; // Ajout de cette ligne pour retourner la valeur calculée
+}
+
+
 ?>
