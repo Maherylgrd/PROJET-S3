@@ -14,7 +14,11 @@ $tabCueilleur=getAllCueilleur();
 
         <div class="mb-4">
             <label for="idthe" class="form-label">Genre </label>
-            <input type="text" class="form-control" id="variete" name="genre">
+            <!-- <input type="text" class="form-control" id="variete" name="genre"> -->
+            <select name="genre" id="variete" class="form-control">
+                <option value="homme">Homme</option>
+                <option value="femme">Femme</option>
+            </select>
         </div>
 
         <div class="mb-4">
