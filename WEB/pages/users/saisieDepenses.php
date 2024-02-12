@@ -1,7 +1,7 @@
 <div id="ensemble">
     <div id="formulaire">
         <h2>Saisie des Depenses</h2>
-        <form action="admin/traitementSaisieDepenses.php" method="get">
+        <form action="users/traitementSaisieDepenses.php" method="get">
         
         <div class="mb-4">
             <label for="idCategorieDepenses" class="form-label">id Categorie Depenses</label>
