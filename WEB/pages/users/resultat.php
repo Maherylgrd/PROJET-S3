@@ -1,3 +1,8 @@
+<?php 
+include('../inc/function.php');
+$totalPoid=getTotalPoid();
+$totalRestantParcelle=calculerPoidTotRestantParcelle();
+?>
 <div id="ensemble" class="row">
     <h1>Resultats</h1>
 <div class="col-lg-4">
@@ -7,7 +12,7 @@
             <h5 class="card-title mb-9 fw-semibold">Poids Total Cueillettes</h5>
             <div class="row align-items-center">
                 <div class="col-8">
-                    <h4 class="fw-semibold mb-3">892005 tonnes</h4>
+                    <h4 class="fw-semibold mb-3"><?php echo $totalPoid ?> tonnes</h4>
                 </div>
             </div>
         </div>
@@ -21,7 +26,7 @@
             <h5 class="card-title mb-9 fw-semibold">Poids restant sur les parcelles</h5>
             <div class="row align-items-center">
                 <div class="col-8">
-                    <h4 class="fw-semibold mb-3">4554 tonnes</h4>
+                    <h4 class="fw-semibold mb-3"><?php echo  $totalRestantParcelle?> tonnes</h4>
                 </div>
             </div>
         </div>

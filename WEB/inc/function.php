@@ -7,7 +7,7 @@ function Login($mail,$mdp)  {
     //echo $requette1;
     $resultat1=mysqli_query(dbconnect(),$requette1);
     $nb=mysqli_num_rows($resultat1);	
-    mysqli_free_result($resultat1);
+    //mysqli_free_result($resultat1);
     if ($nb==0) {
         return -1;
     }
@@ -243,11 +243,34 @@ function getTotalPoid() {
         }
     }
 
-    mysqli_free_result($result);
-    mysqli_close($db);
+    //mysqli_free_result($result);
+    //mysqli_close($db);
 
-    return $totalPoid; // Ajout de cette ligne pour retourner la valeur calculée
+    return $totalPoid; 
 }
+function calculerPoidTotRestantParcelle() {
+    $db = dbconnect(); 
 
+    $query = "SELECT SUM(p.surface) AS surface_totale, IFNULL(SUM(c.poids), 0) AS poids_total
+              FROM parcelle p
+              LEFT JOIN cueillette c ON p.idparcelle = c.idparcelle";
+
+    $result = mysqli_query($db, $query);
+
+    $poidsTotalRestant = 0;
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $surfaceTotale = $row['surface_totale'];
+        $poidsTotalCueillette = $row['poids_total'];
+
+        $poidsTotalRestant = $surfaceTotale - $poidsTotalCueillette;
+    }
+
+    //mysqli_free_result($result);
+    //mysqli_close($db);
+
+    return $poidsTotalRestant;
+}
 
 ?>
