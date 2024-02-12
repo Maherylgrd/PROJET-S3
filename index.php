@@ -1,3 +1,3 @@
 <?php 
-header("Location:WEB/pages/admin/login.html"); 
+header("Location:WEB/pages/login.php"); 
 ?>
