@@ -10,7 +10,7 @@
 
         <div class="mb-4">
             <label for="idthe" class="form-label">ID du The</label>
-            <input type="text" class="form-control" id="variete" name="variete">
+            <input type="text" class="form-control" id="idthe" name="idthe">
         </div>
 
         
