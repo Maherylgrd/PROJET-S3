@@ -30,16 +30,20 @@ $tabParcelle=getAllParcelle();
         <h2>Tableau Gestion Parcelles</h2>
         <table class="table table-hover">
             <tr>
-                <th>Numero parcelle</th>
+                <th>Id parcelle</th>
                 <th>Surface en hectare</th>
-                <th>Variete de the plante</th>
+                <th>Id de The</th>
             </tr>
 
+            <?php for( $i=0;$i<count($tabParcelle);$i++){
+            ?>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+
+                <td><?php echo $tabParcelle[$i]['idparcelle'] ?></td>
+                <td><?php echo $tabParcelle[$i]['surface'] ?></td>
+                <td><?php echo $tabParcelle[$i]['idthe'] ?></td>
+                            </tr>
+       <?php } ?>
         </table>
 
     </div>
