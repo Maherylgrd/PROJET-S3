@@ -12,7 +12,7 @@ if ($login==-2) {
     header("Location:login.php");
 }
 else{
-    $_SESSION['id']=$login;
-    header("Location:acceuil.php");
+    $_SESSION['idUser']=$login;
+    header("Location:template.php?page=acceuil");
 }
 ?>
