@@ -21,6 +21,7 @@ function Login($mail,$mdp)  {
     while ($valiny=mysqli_fetch_assoc($resultat)) {
         $retour=$valiny['iduser'];
         return $retour;
+    }
 }
 function insertthe($variete, $occupation, $rendement) {
     $requette = "INSERT INTO the VALUES (NULL, '%s', '%s', %s)";

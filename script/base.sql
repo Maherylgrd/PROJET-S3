@@ -67,3 +67,6 @@ create table resultat(
     poidrestantparcelle double not null,
     coutrevient double not null
 );
+
+insert into user values(default,'Rakoto','Andry',SHA1('mdptest'),'rakoto@gmail.com',0);
+insert into user values(default,'Rabe','Hery',SHA1('mdptest'),'rabe@gmail.com',1);
