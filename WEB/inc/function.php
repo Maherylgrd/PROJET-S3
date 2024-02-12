@@ -59,9 +59,13 @@ function insertcueilleur($nom, $genre, $datenaissance) {
     // Convertir la date de naissance au format MySQL 'YYYY-MM-DD'
     $datenaissanceFormatted = date('Y-m-d', strtotime($datenaissance));
 
-    $requette = "INSERT INTO cueilleur VALUES (NULL, '%s', '%s', '%s')";
-    $requette = sprintf($requette, $nom, $genre, $datenaissanceFormatted);
-    $result = mysqli_query(dbconnect(), $requette);
+    // Préparer la requête
+    $query = "INSERT INTO cueilleur VALUES (NULL, ?, ?, ?)";
+    $stmt = mysqli_prepare(dbconnect(), $query);
+
+    // Liaison des paramètres et exécution de la requête
+    mysqli_stmt_bind_param($stmt, "sss", $nom, $genre, $datenaissanceFormatted);
+    $result = mysqli_stmt_execute($stmt);
 
     if ($result) {
         echo "Insertion dans 'cueilleur' réussie.";
@@ -69,6 +73,7 @@ function insertcueilleur($nom, $genre, $datenaissance) {
         echo "Erreur lors de l'insertion dans 'cueilleur': " . mysqli_error(dbconnect());
     }
 }
+
 
 
 function insertcategoriedepense($motif) {
@@ -256,46 +261,95 @@ function getAllDepense() {
     mysqli_close($db);
     return $data;
 }
-function getTotalPoid() {
-    $db = dbconnect(); 
-    $query = "SELECT SUM(poids) as totalPoid FROM cueillette;";
-    $result = mysqli_query($db, $query);
-    $totalPoid = 0; 
+// function getTotalPoid() {
+//     $db = dbconnect(); 
+//     $query = "SELECT SUM(poids) as totalPoid FROM cueillette;";
+//     $result = mysqli_query($db, $query);
+//     $totalPoid = 0; 
 
-    if ($result && mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $totalPoid = $row['totalPoid'];
-        }
+//     if ($result && mysqli_num_rows($result) > 0) {
+//         while ($row = mysqli_fetch_assoc($result)) {
+//             $totalPoid = $row['totalPoid'];
+//         }
+//     }
+
+//     //mysqli_free_result($result);
+//     //mysqli_close($db);
+
+//     return $totalPoid; 
+// }
+
+function poids_total_parcelle_date($date_debut, $date_fin) {
+    $db = dbconnect(); 
+    $query = "SELECT SUM(poids) AS poids_total
+              FROM cueillette";
+
+    if ($date_debut !== null && $date_fin !== null) {
+        $query .= " WHERE datecueillette BETWEEN '$date_debut' AND '$date_fin'";
     }
 
-    //mysqli_free_result($result);
-    //mysqli_close($db);
-
-    return $totalPoid; 
-}
-function calculerPoidTotRestantParcelle() {
-    $db = dbconnect(); 
-
-    $query = "SELECT SUM(p.surface) AS surface_totale, IFNULL(SUM(c.poids), 0) AS poids_total
-              FROM parcelle p
-              LEFT JOIN cueillette c ON p.idparcelle = c.idparcelle";
-
     $result = mysqli_query($db, $query);
-
-    $poidsTotalRestant = 0;
-
+    $total_weight = 0;
+    
     if ($result && mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
-        $surfaceTotale = $row['surface_totale'];
-        $poidsTotalCueillette = $row['poids_total'];
-
-        $poidsTotalRestant = $surfaceTotale - $poidsTotalCueillette;
+        $total_weight = $row['poids_total'];
     }
+    
+    return $total_weight;
+}
 
-    //mysqli_free_result($result);
-    //mysqli_close($db);
+// function calculerPoidTotRestantParcelle() {
+//     $db = dbconnect(); 
 
-    return $poidsTotalRestant;
+//     $query = "SELECT SUM(p.surface) AS surface_totale, IFNULL(SUM(c.poids), 0) AS poids_total
+//               FROM parcelle p
+//               LEFT JOIN cueillette c ON p.idparcelle = c.idparcelle";
+
+//     $result = mysqli_query($db, $query);
+
+//     $poidsTotalRestant = 0;
+
+//     if ($result && mysqli_num_rows($result) > 0) {
+//         $row = mysqli_fetch_assoc($result);
+//         $surfaceTotale = $row['surface_totale'];
+//         $poidsTotalCueillette = $row['poids_total'];
+
+//         $poidsTotalRestant = $surfaceTotale - $poidsTotalCueillette;
+//     }
+
+//     //mysqli_free_result($result);
+//     //mysqli_close($db);
+
+//     return $poidsTotalRestant;
+// }
+
+function poids_restant_parcelle_date($date_debut, $date_fin) {
+    $db = dbconnect();
+    
+    $query = "SELECT 
+                p.surface - COALESCE(SUM(c.poids), 0) AS poids_restant
+              FROM 
+                parcelle p
+              LEFT JOIN 
+                cueillette c ON p.idparcelle = c.idparcelle";
+
+    if ($date_debut !== null && $date_fin !== null) {
+        $query .= " WHERE c.datecueillette BETWEEN '$date_debut' AND '$date_fin'";
+    }
+    
+    $query .= " GROUP BY p.idparcelle";
+    
+    $result = mysqli_query($db, $query);
+    $data = array();
+    
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[] = $row['poids_restant'];
+        }
+    }
+    
+    return $data;
 }
 
 ?>
