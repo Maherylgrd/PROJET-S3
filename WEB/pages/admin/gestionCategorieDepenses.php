@@ -30,6 +30,7 @@
             <?php for( $i=0;$i<count($tabcategoriedepense);$i++){
             ?>
             <tr>
+            <td><?php echo $tabcategoriedepense[$i]['idcategoriedepense'] ?></td>
                 <td><?php echo $tabcategoriedepense[$i]['motif'] ?></td>
             </tr>
             <?php } ?>

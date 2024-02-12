@@ -7,7 +7,7 @@ function Login($mail,$mdp)  {
     //echo $requette1;
     $resultat1=mysqli_query(dbconnect(),$requette1);
     $nb=mysqli_num_rows($resultat1);	
-    mysqli_free_result($resultat1);
+    //mysqli_free_result($resultat1);
     if ($nb==0) {
         return -1;
     }
@@ -45,7 +45,7 @@ function insertparcelle($surface, $idthe) {
     }
 }
 
-function insertcueilleur($nom, $genre, $datenaissance) {
+/*function insertcueilleur($nom, $genre, $datenaissance) {
     $requette = "INSERT INTO cueilleur VALUES (NULL, '%s', '%s', '%s')";
     $requette = sprintf($requette, $nom, $genre, $datenaissance);
     $result = mysqli_query(dbconnect(), $requette);
@@ -54,7 +54,22 @@ function insertcueilleur($nom, $genre, $datenaissance) {
     } else {
         echo "Erreur lors de l'insertion dans 'cueilleur': " . mysqli_error(dbconnect());
     }
+}*/
+function insertcueilleur($nom, $genre, $datenaissance) {
+    // Convertir la date de naissance au format MySQL 'YYYY-MM-DD'
+    $datenaissanceFormatted = date('Y-m-d', strtotime($datenaissance));
+
+    $requette = "INSERT INTO cueilleur VALUES (NULL, '%s', '%s', '%s')";
+    $requette = sprintf($requette, $nom, $genre, $datenaissanceFormatted);
+    $result = mysqli_query(dbconnect(), $requette);
+
+    if ($result) {
+        echo "Insertion dans 'cueilleur' réussie.";
+    } else {
+        echo "Erreur lors de l'insertion dans 'cueilleur': " . mysqli_error(dbconnect());
+    }
 }
+
 
 function insertcategoriedepense($motif) {
     $requette = "INSERT INTO categoriedepense VALUES (NULL, '%s')";
@@ -79,7 +94,7 @@ function insertsalaire($idcueilleur, $montant) {
     }
 }
 
-function insertcueillette($datecueillette, $idcueilleur, $idparcelle, $poids) {
+/*function insertcueillette($datecueillette, $idcueilleur, $idparcelle, $poids) {
     $requette = "INSERT INTO cueillette VALUES (NULL, '%s', %d, %d, %.2f)";
     $requette = sprintf($requette, $datecueillette, $idcueilleur, $idparcelle, $poids);
     $result = mysqli_query(dbconnect(), $requette);
@@ -88,7 +103,17 @@ function insertcueillette($datecueillette, $idcueilleur, $idparcelle, $poids) {
     } else {
         echo "Erreur lors de l'insertion dans 'cueillette': " . mysqli_error(dbconnect());
     }
+}*/
+function insertcueillette($datecueillette, $idcueilleur, $idparcelle, $poids) {
+    $datecueilletteFormatted = date('Y-m-d H:i:s', strtotime($datecueillette));
+
+    $requette = "INSERT INTO cueillette VALUES (NULL, '%s', %d, %d, %.2f)";
+    $requette = sprintf($requette, $datecueilletteFormatted, $idcueilleur, $idparcelle, $poids);
+    $result = mysqli_query(dbconnect(), $requette);
+
+    
 }
+
 
 function insertdepense($idcategoriedepense, $montant) {
     $requette = "INSERT INTO depense VALUES (NULL, %d, %.2f)";
@@ -121,7 +146,7 @@ function getStatutPersonne($id){
     if ($nb==0) {
         return -1;
     }
-    while ($valiny=mysqli_fetch_assoc($resultat)) {
+    while ($valiny=mysqli_fetch_assoc($resultat1)) {
         $retour=$valiny['statut'];
         return $retour;
     }   
@@ -243,11 +268,34 @@ function getTotalPoid() {
         }
     }
 
-    mysqli_free_result($result);
-    mysqli_close($db);
+    //mysqli_free_result($result);
+    //mysqli_close($db);
 
-    return $totalPoid; // Ajout de cette ligne pour retourner la valeur calculée
+    return $totalPoid; 
 }
+function calculerPoidTotRestantParcelle() {
+    $db = dbconnect(); 
 
+    $query = "SELECT SUM(p.surface) AS surface_totale, IFNULL(SUM(c.poids), 0) AS poids_total
+              FROM parcelle p
+              LEFT JOIN cueillette c ON p.idparcelle = c.idparcelle";
+
+    $result = mysqli_query($db, $query);
+
+    $poidsTotalRestant = 0;
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $surfaceTotale = $row['surface_totale'];
+        $poidsTotalCueillette = $row['poids_total'];
+
+        $poidsTotalRestant = $surfaceTotale - $poidsTotalCueillette;
+    }
+
+    //mysqli_free_result($result);
+    //mysqli_close($db);
+
+    return $poidsTotalRestant;
+}
 
 ?>
