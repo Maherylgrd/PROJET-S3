@@ -3,7 +3,7 @@
     $categorieDepense=$_GET['categorieDepense'];
     $
     if ($categorieDepense==null ) {
-        header('Location:configurationSalaire.php');
+        header('Location:gestionCategoriedepenses.php');
     }
     else{
         insertcategoriedepense($categorieDepense);
