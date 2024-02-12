@@ -45,7 +45,7 @@ function insertparcelle($surface, $idthe) {
     }
 }
 
-function insertcueilleur($nom, $genre, $datenaissance) {
+/*function insertcueilleur($nom, $genre, $datenaissance) {
     $requette = "INSERT INTO cueilleur VALUES (NULL, '%s', '%s', '%s')";
     $requette = sprintf($requette, $nom, $genre, $datenaissance);
     $result = mysqli_query(dbconnect(), $requette);
@@ -54,7 +54,22 @@ function insertcueilleur($nom, $genre, $datenaissance) {
     } else {
         echo "Erreur lors de l'insertion dans 'cueilleur': " . mysqli_error(dbconnect());
     }
+}*/
+function insertcueilleur($nom, $genre, $datenaissance) {
+    // Convertir la date de naissance au format MySQL 'YYYY-MM-DD'
+    $datenaissanceFormatted = date('Y-m-d', strtotime($datenaissance));
+
+    $requette = "INSERT INTO cueilleur VALUES (NULL, '%s', '%s', '%s')";
+    $requette = sprintf($requette, $nom, $genre, $datenaissanceFormatted);
+    $result = mysqli_query(dbconnect(), $requette);
+
+    if ($result) {
+        echo "Insertion dans 'cueilleur' réussie.";
+    } else {
+        echo "Erreur lors de l'insertion dans 'cueilleur': " . mysqli_error(dbconnect());
+    }
 }
+
 
 function insertcategoriedepense($motif) {
     $requette = "INSERT INTO categoriedepense VALUES (NULL, '%s')";
@@ -79,7 +94,7 @@ function insertsalaire($idcueilleur, $montant) {
     }
 }
 
-function insertcueillette($datecueillette, $idcueilleur, $idparcelle, $poids) {
+/*function insertcueillette($datecueillette, $idcueilleur, $idparcelle, $poids) {
     $requette = "INSERT INTO cueillette VALUES (NULL, '%s', %d, %d, %.2f)";
     $requette = sprintf($requette, $datecueillette, $idcueilleur, $idparcelle, $poids);
     $result = mysqli_query(dbconnect(), $requette);
@@ -88,7 +103,17 @@ function insertcueillette($datecueillette, $idcueilleur, $idparcelle, $poids) {
     } else {
         echo "Erreur lors de l'insertion dans 'cueillette': " . mysqli_error(dbconnect());
     }
+}*/
+function insertcueillette($datecueillette, $idcueilleur, $idparcelle, $poids) {
+    $datecueilletteFormatted = date('Y-m-d H:i:s', strtotime($datecueillette));
+
+    $requette = "INSERT INTO cueillette VALUES (NULL, '%s', %d, %d, %.2f)";
+    $requette = sprintf($requette, $datecueilletteFormatted, $idcueilleur, $idparcelle, $poids);
+    $result = mysqli_query(dbconnect(), $requette);
+
+    
 }
+
 
 function insertdepense($idcategoriedepense, $montant) {
     $requette = "INSERT INTO depense VALUES (NULL, %d, %.2f)";
@@ -121,7 +146,7 @@ function getStatutPersonne($id){
     if ($nb==0) {
         return -1;
     }
-    while ($valiny=mysqli_fetch_assoc($resultat)) {
+    while ($valiny=mysqli_fetch_assoc($resultat1)) {
         $retour=$valiny['statut'];
         return $retour;
     }   
