@@ -51,7 +51,7 @@ session_start();
               <span class="hide-menu">Admin</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="admin/template.php?page=gestionThe" aria-expanded="false">
+              <a class="sidebar-link" href="template.php?page=admin/gestionThe" aria-expanded="false">
                 <span>
                   <i class="ti ti-mood-happy"></i>
                 </span>
@@ -59,7 +59,7 @@ session_start();
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="admin/template.php?page=gestionParcelles" aria-expanded="false">
+              <a class="sidebar-link" href="template.php?page=admin/gestionParcelles" aria-expanded="false">
                 <span>
                   <i class="ti ti-aperture"></i>
                 </span>
@@ -67,7 +67,7 @@ session_start();
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="admin/template.php?page=gestionCueilleur" aria-expanded="false">
+              <a class="sidebar-link" href="template.php?page=admin/gestionCueilleur" aria-expanded="false">
                 <span>
                   <i class="ti ti-aperture"></i>
                 </span>
@@ -75,7 +75,7 @@ session_start();
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="admin/template.php?page=gestionDepenses" aria-expanded="false">
+              <a class="sidebar-link" href="template.php?page=admin/gestionDepenses" aria-expanded="false">
                 <span>
                   <i class="ti ti-aperture"></i>
                 </span>
@@ -83,7 +83,7 @@ session_start();
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="admin/template.php?page=configSalaire" aria-expanded="false">
+              <a class="sidebar-link" href="template.php?page=admin/configSalaire" aria-expanded="false">
                 <span>
                   <i class="ti ti-aperture"></i>
                 </span>
