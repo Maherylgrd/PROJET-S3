@@ -1,3 +1,7 @@
+<?php
+include('../inc/function.php');
+$tabParcelle=getAllParcelle();
+?>
 <div id="ensemble">
     <div id="formulaire">
         <h2>Insertion Parcelles</h2>
