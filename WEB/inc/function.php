@@ -192,5 +192,43 @@ function getAllSalaire() {
     mysqli_close($db);
     return $data;
 }
-
+function getAllResultat() {
+    $db = dbconnect(); 
+    $query = "SELECT * FROM resultat";
+    $result = mysqli_query($db, $query);
+    $data = array(); 
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[] = $row;
+        }
+    }
+    mysqli_close($db);
+    return $data;
+}
+function getAllCueillette(){
+    $db = dbconnect(); 
+    $query = "SELECT * FROM Cueillette";
+    $result = mysqli_query($db, $query);
+    $data = array(); 
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[] = $row;
+        }
+    }
+    mysqli_close($db);
+    return $data;
+}
+function getAllDepense() {
+    $db = dbconnect(); 
+    $query = "SELECT * FROM Depense";
+    $result = mysqli_query($db, $query);
+    $data = array(); 
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[] = $row;
+        }
+    }
+    mysqli_close($db);
+    return $data;
+}
 ?>
