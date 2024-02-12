@@ -1,8 +1,13 @@
 <?php 
     include '../../inc/function.php';
     $surface=$_GET['surface'];
-    $variete=$_GET['variete'];
+    $idthe=$_GET['idthe'];
+    if ($surface==null || $idthe==null) {
+        header('Location:gestionParcelles.php');
+    }
+    else{
+        insertparcelle($surface,$idthe);
+        header('Location:../template.php?page=accueil');
+    }
     
-    insertparcelle($surface,$variete);
-    header('Location:../acceuil.php');
 ?>
