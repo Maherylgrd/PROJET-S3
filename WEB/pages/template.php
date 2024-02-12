@@ -205,6 +205,9 @@ session_start();
           include $page .".php";
           ?>
       </div>
+
+      <footer class="col-lg-offset-6 col-lg-6">  Maya ETU002737 _ Mahery ETU002449 _ Teddy ETU002495</footer>
+
       </div>
     </div>
   </div>
@@ -217,6 +220,5 @@ session_start();
   <script src="../assets/js/dashboard.js"></script>
 </body>
 
-<footer>Maya ETU002737 _ Mahery ETU002449 _ Teddy ETU002495</footer>
 
 </html>
