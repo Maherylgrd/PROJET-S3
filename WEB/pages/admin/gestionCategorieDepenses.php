@@ -1,6 +1,6 @@
 <?php 
     include('../inc/function.php');
-    $tabdepense=getAllCategorieDepense();
+    $tabcategoriedepense=getAllCategorieDepense();
 ?>
 <div id="ensemble">
     <div id="formulaire">
@@ -27,11 +27,10 @@
                 <th>id Categorie Depense</th>
                 <th>Motif</th>
             </tr>
-            <?php for( $i=0;$i<count($tabdepense);$i++){
+            <?php for( $i=0;$i<count($tabcategoriedepense);$i++){
             ?>
             <tr>
-                <td><?php echo $tabdepense[$i]['categorieDepense'] ?></td>
-                <td><?php echo $tabdepense[$i]['montant'] ?></td>
+                <td><?php echo $tabcategoriedepense[$i]['motif'] ?></td>
             </tr>
             <?php } ?>
         </table>
