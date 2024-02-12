@@ -51,7 +51,7 @@ session_start();
               <span class="hide-menu">Admin</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="gestionThe" aria-expanded="false">
+              <a class="sidebar-link" href="admin/gestionThe" aria-expanded="false">
                 <span>
                   <i class="ti ti-mood-happy"></i>
                 </span>
@@ -59,7 +59,7 @@ session_start();
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
+              <a class="sidebar-link" href="admin/gestionParcelles" aria-expanded="false">
                 <span>
                   <i class="ti ti-aperture"></i>
                 </span>
