@@ -1,7 +1,7 @@
 <div id="ensemble">
     <div id="formulaire">
         <h2>Insertion Cuilleur</h2>
-        <form action="traitementParcelle.php" method="get">
+        <form action="admin/traitementCueilleur.php" method="get">
         
         <div class="mb-4">
             <label for="surface" class="form-label">Nom </label>

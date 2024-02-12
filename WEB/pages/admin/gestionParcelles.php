@@ -1,7 +1,7 @@
 <div id="ensemble">
     <div id="formulaire">
         <h2>Insertion Parcelles</h2>
-        <form action="traitementParcelle.php" method="get">
+        <form action="admin/traitementParcelle.php" method="get">
         
         <div class="mb-4">
             <label for="surface" class="form-label">Surface en hectare</label>
