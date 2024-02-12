@@ -1,7 +1,7 @@
 <div id="ensemble">
     <div id="formulaire">
         <h2>Saisie des Cueillettes</h2>
-        <form action="admin/traitementCategorieDepenses.php" method="get">
+        <form action="admin/traitementSaisieDepenses.php" method="get">
         
         <div class="mb-4">
             <label for="dateCeuilleur" class="form-label">Date Cueillettes</label>
