@@ -1,6 +1,11 @@
+<?php
+include('../inc/function.php');
+$tabSal=getAllSalaire();
+
+?>
 <div id="ensemble">
     <div id="formulaire">
-        <h2>Insertion Salaire des Ceuilleur </h2>
+        <h2>Insertion Salaire Cueilleur </h2>
         <form action="admin/traitementSalaire.php" method="get">
         
         <div class="mb-4">
@@ -26,14 +31,22 @@
         <h2>Tableau Gestion Salaire des Ceuilleurs</h2>
         <table class="table table-hover">
             <tr>
-                <th>id Categorie Depense</th>
-                <th>Motif</th>
+                <th>id Salaire</th>
+                <th>id Ceuilleur</th>
+                <th>Montant</th>
+
             </tr>
 
+            <?php for( $i=0;$i<count($tabSal);$i++){
+            ?>
             <tr>
-                <td></td>
-                <td></td>
+
+                <td><?php echo $tabSal[$i]['idsalaire'] ?></td>
+                <td><?php echo $tabSal[$i]['idceuilleur'] ?></td>
+                <td><?php echo $tabSal[$i]['montant'] ?></td>
+                
             </tr>
+       <?php } ?>
         </table>
 
     </div>
