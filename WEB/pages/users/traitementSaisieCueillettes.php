@@ -5,7 +5,7 @@
     $idParcelles=$_GET['idParcelles'];
     $poids=$_GET['poids'];
 
-    if ($dateCeuilleur=null || $idCueilleur=null || $idParcelles=null || $poids=null) {
+    if ($dateCeuilleur==null || $idCueilleur==null || $idParcelles==null || $poids==null) {
         header('Location:saisieCueillettes.php');
     }
     else{
