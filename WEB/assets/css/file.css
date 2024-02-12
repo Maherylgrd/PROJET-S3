@@ -1,0 +1,11 @@
+.btn{
+    background-color: #64a660;
+}
+
+footer{
+    height: 60px; /* Set the height of your footer */
+   /*  background-color: #f1f1f1; Set the background color of your footer */
+    /* position: absolute; */
+    bottom: 0;
+    width: 100%;
+}
