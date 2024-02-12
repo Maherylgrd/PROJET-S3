@@ -28,7 +28,7 @@ create table parcelle(
 create table cueilleur (
     idcueilleur int auto_increment primary key,
     nom varchar (256),
-    genre varchar(5) check (genre between 'homme' and 'femme'),
+    genre varchar(10) ,
     datenaissance date
 );
 
@@ -67,3 +67,6 @@ create table resultat(
     poidrestantparcelle double not null,
     coutrevient double not null
 );
+
+insert into user values(default,'Rakoto','Andry',SHA1('mdptest'),'rakoto@gmail.com',0);
+insert into user values(default,'Rabe','Hery',SHA1('mdptest'),'rabe@gmail.com',1);
