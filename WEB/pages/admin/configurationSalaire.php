@@ -1,7 +1,7 @@
 <div id="ensemble">
     <div id="formulaire">
         <h2>Insertion Salaire des Ceuilleur </h2>
-        <form action="admin/traitementCategorieDepenses.php" method="get">
+        <form action="admin/traitementSalaire.php" method="get">
         
         <div class="mb-4">
             <label for="idCeuilleur" class="form-label">id Ceuilleur</label>

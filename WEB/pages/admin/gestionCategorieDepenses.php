@@ -1,7 +1,11 @@
+<?php 
+    include('../inc/function.php');
+    $tabdepense=getAllCategorieDepense();
+?>
 <div id="ensemble">
     <div id="formulaire">
         <h2>Insertion Categorie Depenses </h2>
-        <form action="admin/traitementCategorieDepenses.php" method="get">
+        <form action="admin/traitementDepenses.php" method="get">
         
         <div class="mb-4">
             <label for="categorieDepense" class="form-label">Motif depense</label>
