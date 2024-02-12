@@ -197,7 +197,7 @@ session_start();
       <div class="container-fluid">
           <?php 
           $page=$_GET['page'];
-          include( $page+".php")
+          include $page .".php";
           ?>
       </div>
       </div>
