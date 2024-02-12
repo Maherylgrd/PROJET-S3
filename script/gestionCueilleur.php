@@ -1,19 +1,23 @@
 <div id="ensemble">
     <div id="formulaire">
-        <h2>Insertion Parcelles</h2>
+        <h2>Insertion Cuilleur</h2>
         <form action="traitementParcelle.php" method="get">
         
         <div class="mb-4">
-            <label for="surface" class="form-label">Surface en hectare</label>
-            <input type="number" class="form-control" id="surface" name="surface">
+            <label for="surface" class="form-label">Nom </label>
+            <input type="text" class="form-control" id="surface" name="nom">
         </div>
 
         <div class="mb-4">
-            <label for="idthe" class="form-label">ID du The</label>
-            <input type="text" class="form-control" id="variete" name="variete">
+            <label for="idthe" class="form-label">Genre </label>
+            <input type="text" class="form-control" id="variete" name="genre">
         </div>
 
-        
+        <div class="mb-4">
+            <label for="idthe" class="form-label">Date de Naissance </label>
+            <input type="text" class="form-control" id="variete" name="dtn">
+        </div>
+
 
         <div class="mb-4">
             <input type="submit" class="btn form-control" value="valider">
