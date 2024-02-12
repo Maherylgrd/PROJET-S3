@@ -1,9 +1,11 @@
 <?php 
+
 include ('../inc/function.php'); 
 session_start();
 
 $mail=$_POST['mail'];
 $mdp=$_POST['mdp'];
+
 $login=login($mail,$mdp);
 
 if($login==-1){
