@@ -75,7 +75,7 @@ session_start();
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="template.php?page=admin/gestionDepenses" aria-expanded="false">
+              <a class="sidebar-link" href="template.php?page=admin/gestionCategorieDepenses" aria-expanded="false">
                 <span>
                   <i class="ti ti-aperture"></i>
                 </span>
@@ -83,7 +83,7 @@ session_start();
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="template.php?page=admin/configSalaire" aria-expanded="false">
+              <a class="sidebar-link" href="template.php?page=admin/configurationSalaire" aria-expanded="false">
                 <span>
                   <i class="ti ti-aperture"></i>
                 </span>
