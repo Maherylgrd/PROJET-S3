@@ -217,6 +217,6 @@ session_start();
   <script src="../assets/js/dashboard.js"></script>
 </body>
 
-<footer>ETU2737</footer>
+<footer>Maya ETU002737 _ Mahery ETU002449 _ Teddy ETU002495</footer>
 
 </html>
