@@ -380,5 +380,120 @@ function calculer_cout_revient_par_kg($date_debut, $date_fin) {
     mysqli_stmt_close($stmt);
     return $cout_revient_par_kg;
 }
+function insertPrixthe($idthe, $prixthe) {
+    $query = "INSERT INTO prixthe (idthe, prixthe) VALUES (%d, %.2f)";
+    $query = sprintf($query, $idthe, $prixthe);
+    $result = mysqli_query(dbconnect(), $query);
+    if ($result) {
+        echo "Insertion into 'prixthe' successful.";
+    } else {
+        echo "Error inserting into 'prixthe': " . mysqli_error(dbconnect());
+    }
+}
+
+function selectAllPrixthe() {
+    $db = dbconnect(); 
+    $query = "SELECT * FROM prixthe";
+    $result = mysqli_query($db, $query);
+    $data = array(); 
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[] = $row;
+        }
+        mysqli_free_result($result);
+    }
+    return $data;
+}
+
+function insertPaiement($datecueillette, $nom, $poidcueilli, $bonus, $malus, $paiement) {
+    $query = "INSERT INTO paiement (datecueillette, nom, poidcueilli, bonus, mallus, paiement) VALUES ('%s', '%s', %.2f, %.2f, %.2f, %.2f)";
+    $query = sprintf($query, $datecueillette, $nom, $poidcueilli, $bonus, $malus, $paiement);
+    $result = mysqli_query(dbconnect(), $query);
+    if ($result) {
+        echo "Insertion into 'paiement' successful.";
+    } else {
+        echo "Error inserting into 'paiement': " . mysqli_error(dbconnect());
+    }
+}
+function selectPoidsCueillette($dateDebut, $dateFin, $idCueilleteur) {
+    $query = "SELECT poids FROM cueillette WHERE datecueillette BETWEEN '%s' AND '%s' AND idceuilleur = %d";
+    $query = sprintf($query, $dateDebut, $dateFin, $idCueilleteur);
+    $result = mysqli_query(dbconnect(), $query);
+    $data = array();
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[] = $row['poids'];
+        }
+        mysqli_free_result($result);
+    }
+    return $data;
+}
+
+function selectRemuneration($id) {
+    $query = "SELECT * FROM remuneration WHERE idceuilleur = $id";
+    $result = mysqli_query(dbconnect(), $query);
+    $data = array();
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[] = $row;
+        }
+        mysqli_free_result($result);
+    }
+    return $data;
+}
+
+function insertRemuneration($idCueilleur, $poidsMinimum, $bonus, $malus) {
+    $query = "INSERT INTO remuneration (idcueilleur, poids_minimum, bonus, malus) VALUES (%d, %.2f, %.2f, %.2f)";
+    $query = sprintf($query, $idCueilleur, $poidsMinimum, $bonus, $malus);
+    $result = mysqli_query(dbconnect(), $query);
+    if ($result) {
+        echo "Insertion into 'remuneration' successful.";
+    } else {
+        echo "Error inserting into 'remuneration': " . mysqli_error(dbconnect());
+    }
+}
+
+function selectNomCueilleur($idCueilleur) {
+    $query = "SELECT nom FROM cueilleur WHERE idcueilleur = $idCueilleur";
+    $result = mysqli_query(dbconnect(), $query);
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $nom = $row['nom'];
+        mysqli_free_result($result);
+        return $nom;
+    } else {
+        return "Cueilleur non trouvé";
+    }
+}
+
+
+function calculatePayment($dateDebut, $dateFin, $idCueilleur) {
+    $remuneration = selectRemuneration($idCueilleur);
+    if (empty($remuneration)) {
+        echo "Aucune donnée de rémunération trouvée pour le cueilleur avec l'ID : $idCueilleur";
+        return;
+    }
+    $poidsCueillette = selectPoidsCueillette($dateDebut, $dateFin, $idCueilleur);
+    $paiementTotal = 0;
+    $nombreJours = count($poidsCueillette);
+    $poidsMinimum = $remuneration[0]['poidminimum'];
+    $salaire = $remuneration[0]['montant'];
+    $bonus = $remuneration[0]['bonus'];
+    $malus = $remuneration[0]['malus'];
+    for ($i = 0; $i < $nombreJours; $i++) {
+        if ($poidsCueillette[$i] < $poidsMinimum) {
+            $paiement = $salaire - ($salaire * $malus / 100);
+        } else {
+            $paiement = $salaire + ($salaire * $bonus / 100);
+        }
+        $paiementTotal += $paiement;
+    }
+    $paiementTotal = max(0, $paiementTotal);
+    $datePaiement = date("Y-m-d");
+    $nom = selectNomCueilleur($idCueilleur);
+    insertPaiement($datePaiement, $nom, $poidsCueillette, $bonus, $malus, $paiementTotal);
+}
+
+
 
 ?>
