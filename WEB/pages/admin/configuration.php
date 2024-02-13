@@ -1,6 +1,7 @@
 <div id="ensemble">
     <div id="formulaire">
         <h2>Configuration minimale ...</h2>
+    <form action="admin/traitementConfiguration.php">
         <div class="mt-4">
                     <div class="col-md-12">
                         <label>Id cueilleur</label>
@@ -25,28 +26,13 @@
                 </div>
                 <div class="mt-4">
                   <div class="col-md-12">
-                      <label>Mallus</label>
+                      <label>Malus</label>
                   </div>
                   <div class="col-md-12 mt-3">
-                      <input type="number" id="disabledTextInput" class="form-control " name="mallus" >
+                      <input type="number" id="disabledTextInput" class="form-control " name="malus" >
                     </div>
                 </div>
-                <!--<div class="mt-4">
-                  <div class="col-md-12">
-                      <label>Variete :</label>
-                  </div>
-                  <div class="col-md-12 mt-3">
-                      <input type="number" id="disabledTextInput" class="form-control " name="variete" >
-                    </div>
-                </div>
-                <div class="mt-4">
-                  <div class="col-md-12">
-                      <label>Prix variete de The :</label>
-                  </div>
-                  <div class="col-md-12 mt-3">
-                      <input type="number" id="disabledTextInput" class="form-control " name="pvt" >
-                    </div>
-                </div>-->
+                
                 <div class="  mt-4 ">
                   <button type="submit" class="btn btn-primary w-100">Valider</button>
                 </div>
