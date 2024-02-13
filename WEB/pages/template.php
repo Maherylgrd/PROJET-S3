@@ -155,6 +155,14 @@ $statut=getStatutPersonne($iduser);
                 <span class="hide-menu">Resultat</span>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="users/prevision.php" aria-expanded="false">
+                <span>
+                  <i class="ti ti-cards"></i>
+                </span>
+                <span class="hide-menu">Prevision</span>
+              </a>
+            </li>
            
             
             <li class="nav-small-cap">
