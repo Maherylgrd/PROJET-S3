@@ -27,7 +27,7 @@ $statut=getStatutPersonne($iduser);
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
           <a href="./index.html" class="text-nowrap logo-img">
-            <img src="../../assets/images/logos/dark-logo.svg" width="180" alt="" />
+            <!-- <img src="../../assets/images/logos/dark-logo.svg" width="180" alt="" /> -->
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
@@ -156,6 +156,14 @@ $statut=getStatutPersonne($iduser);
                 <span class="hide-menu">Resultat</span>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="users/prevision.php" aria-expanded="false">
+                <span>
+                  <i class="ti ti-cards"></i>
+                </span>
+                <span class="hide-menu">Prevision</span>
+              </a>
+            </li>
            
             
             <li class="nav-small-cap">
@@ -204,7 +212,11 @@ $statut=getStatutPersonne($iduser);
                 <div class="notification bg-primary rounded-circle"></div>
               </a>
             </li>
+            <li class="nav-item">
+            </li>
           </ul>
+          <center><h1 class="text-center">Be'leaf</h1></center>
+
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
               <a href="login.php" target="_blank" class="btn btn-primary">Log out</a>
