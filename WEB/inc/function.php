@@ -381,4 +381,19 @@ function calculer_cout_revient_par_kg($date_debut, $date_fin) {
     return $cout_revient_par_kg;
 }
 
+function insertSaison($tabidmois){
+    $db= dbconnect();
+    $query="delete from saison ";
+    $stmt= mysqli_prepare($db, $query);
+    if(mysqli_stmt_execute($stmt)){
+        for($i=0;count($idmois);$i++){ 
+            $query2="insert into saison ("$tabidmois[$i]")values (%d)";
+            $result=mysqli_query($db,$query2);
+        }
+    }
+
+}
+
+    
+
 ?>
