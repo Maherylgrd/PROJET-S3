@@ -300,30 +300,7 @@ function poids_total_parcelle_date($date_debut, $date_fin) {
     return $total_weight;
 }
 
-// function calculerPoidTotRestantParcelle() {
-//     $db = dbconnect(); 
 
-//     $query = "SELECT SUM(p.surface) AS surface_totale, IFNULL(SUM(c.poids), 0) AS poids_total
-//               FROM parcelle p
-//               LEFT JOIN cueillette c ON p.idparcelle = c.idparcelle";
-
-//     $result = mysqli_query($db, $query);
-
-//     $poidsTotalRestant = 0;
-
-//     if ($result && mysqli_num_rows($result) > 0) {
-//         $row = mysqli_fetch_assoc($result);
-//         $surfaceTotale = $row['surface_totale'];
-//         $poidsTotalCueillette = $row['poids_total'];
-
-//         $poidsTotalRestant = $surfaceTotale - $poidsTotalCueillette;
-//     }
-
-//     //mysqli_free_result($result);
-//     //mysqli_close($db);
-
-//     return $poidsTotalRestant;
-// }
 
 function poids_restant_parcelle_date($date_debut, $date_fin) {
     $db = dbconnect();
