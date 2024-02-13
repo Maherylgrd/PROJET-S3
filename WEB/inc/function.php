@@ -194,7 +194,7 @@ function getAllCueilleur() {
             $data[] = $row;
         }
     }
-    mysqli_close($db);
+    //mysqli_close($db);
     return $data;
 }
 function getAllCategorieDepense() {
@@ -233,7 +233,7 @@ function getAllResultat() {
             $data[] = $row;
         }
     }
-    mysqli_close($db);
+    //mysqli_close($db);
     return $data;
 }
 function getAllCueillette(){
@@ -246,7 +246,7 @@ function getAllCueillette(){
             $data[] = $row;
         }
     }
-    mysqli_close($db);
+    //mysqli_close($db);
     return $data;
 }
 function getAllDepense() {
@@ -259,7 +259,7 @@ function getAllDepense() {
             $data[] = $row;
         }
     }
-    mysqli_close($db);
+    //mysqli_close($db);
     return $data;
 }
 // function getTotalPoid() {
@@ -402,7 +402,7 @@ function selectAllPrixthe() {
         while ($row = mysqli_fetch_assoc($result)) {
             $data[] = $row;
         }
-        mysqli_free_result($result);
+       // mysqli_free_result($result);
     }
     return $data;
 }
@@ -432,7 +432,7 @@ function selectPoidsCueillette($dateDebut, $dateFin, $idCueilleteur) {
 }
 
 function selectRemuneration($id) {
-    $query = "SELECT * FROM remuneration WHERE idceuilleur = $id";
+    $query = "SELECT * FROM remuneration WHERE idcueilleur = $id";
     $result = mysqli_query(dbconnect(), $query);
     $data = array();
     if ($result && mysqli_num_rows($result) > 0) {
