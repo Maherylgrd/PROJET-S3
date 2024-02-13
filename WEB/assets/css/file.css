@@ -9,3 +9,12 @@ footer{
     bottom: 0;
     width: 100%;
 }
+
+/* input [submit]{
+    background-color: #64a660 ;
+} */
+
+.bouton{
+    background-color: #668764 ;
+    color: #fff;
+}
