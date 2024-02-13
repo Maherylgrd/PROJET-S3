@@ -20,8 +20,7 @@ create table the(
 
 create table prixthe(
     idprixthe int auto_increment primary key,
-    idthe int,
-    foreign key (idthe) references the (idthe),
+    variete varchar(256) not null ,
     prixthe double not null
 
 );
@@ -98,10 +97,10 @@ create table paiement(
 );
 
 create table saison(
-    idmois int check (statut between 1 and 12)
+    idmois int check (idmois between 1 and 12)
 );
 
-insert into user values(null,'admin','admin',sha1('admin'),'admin@gmail.com',0);
-insert into user values(null,'normal','normal',sha1('normal'),'normal@gmail.com',1);
+insert into user values(null,' Rakoto',' Andry',sha1('mdptest'),'Rakoto@gmail.com',0);
+insert into user values(null,'Randria','Hery',sha1('mdptest'),'Randria@gmail.com',1);
 
 insert into cueilleur values(NULL,'doda','H','2000-12-14');
