@@ -1,7 +1,7 @@
 <?php 
     include '../../inc/function.php';
     $categorieDepense=$_GET['categorieDepense'];
-    if ($categorieDepense==null ) {
+    if ($categorieDepense=="" ) {
         header('Location:gestionCategoriedepenses.php');
     }
     else{

@@ -353,9 +353,10 @@ function calculer_cout_revient_par_kg($date_debut, $date_fin) {
     return $cout_revient_par_kg;
 }
 function insertPrixThe($variete, $prixthe) {
+    $db=dbconnect();
     $query = "INSERT INTO prixthe (variete, prixthe) VALUES ('%s', %.2f)";
     $query = sprintf($query, $variete, $prixthe);
-    $result = mysqli_query(dbconnect(), $query);
+    $result = mysqli_query($db, $query);
 
     if ($result) {
         echo "Insertion into 'prixthe' successful.";

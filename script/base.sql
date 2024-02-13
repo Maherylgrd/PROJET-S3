@@ -104,3 +104,21 @@ create table saison(
 insert into user values(null,' Rakoto',' Andry',sha1('mdptest'),'Rakoto@gmail.com',0);
 insert into user values(null,'Randria','Hery',sha1('mdptest'),'Randria@gmail.com',1);
 
+CREATE VIEW poids_restant_view AS
+SELECT 
+    p.idparcelle,
+    th.variete AS nom_the,
+    p.surface AS superficie,
+    SUM((th.rendement * p.surface * 10000 / th.occupation)) - COALESCE(SUM(c.poids), 0) AS poids_restant,
+    (p.surface / th.occupation) AS nombre_pieds_restants
+FROM 
+    parcelle p
+JOIN 
+    the th ON p.idthe = th.idthe
+LEFT JOIN 
+    cueillette c ON p.idparcelle = c.idparcelle
+WHERE 
+    c.datecueillette <= '%s'
+    AND MONTH(c.datecueillette) >= (SELECT idmois FROM saison WHERE idmois <= MONTH('%s') ORDER BY idmois DESC LIMIT 1)
+GROUP BY
+    p.idparcelle;

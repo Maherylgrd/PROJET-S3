@@ -16,4 +16,5 @@ else{
     $_SESSION['idUser']=$login;
     header("Location:template.php?page=acceuil");
 }
+
 ?>
