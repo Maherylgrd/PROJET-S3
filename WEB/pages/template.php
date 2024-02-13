@@ -98,6 +98,14 @@ session_start();
                 <span class="hide-menu">Gestion Saison</span>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="template.php?page=admin/configuration" aria-expanded="false">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Configuration Minimale</span>
+              </a>
+            </li>
             <!-- boutons users -->
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>

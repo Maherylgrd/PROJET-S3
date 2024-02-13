@@ -5,7 +5,7 @@ $tabMois = array(
     "juillet", "aout", "septembre", "octobre", "novembre", "decembre"
 );
 ?>
-?>
+
 <div id="ensemble">
     <div id="formulaire">
         <h2>Insertion Saison</h2>
