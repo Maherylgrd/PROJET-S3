@@ -19,15 +19,15 @@ $coutDeRevient = isset($_GET['coupderevient']) ? $_GET['coupderevient'] : null;
                 <label for="dateFin" >Date fin</label>
                 <input type="date" class="form-control" id="dateFin" name="dateFin">
             </div>
-            <div class="form-group col-lg-4 col-md-4 col-sm-8 col-xs-10">
-                <input type="submit" class="form-control" value="chercher" >
+            <div class="form-group col-lg-4 col-md-4 col-sm-8 col-xs-10" style="margin-top: 1.5em;">
+                <input type="submit" class="form-control bouton" value="chercher" >
             </div>
     </div>
     </form>
 </div>
 
 
-<div id="nombres" class="row"> 
+<div id="nombres" class="row" style="margin :3em 0em;"> 
     <div class="col-lg-4">
             <!-- Yearly Breakup -->
         <div class="card overflow-hidden">
