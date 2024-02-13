@@ -55,9 +55,9 @@ $coutDeRevient = isset($_GET['coupderevient']) ? $_GET['coupderevient'] : null;
                         $tableau_decode = unserialize(urldecode($totalRestantParcelle));
                         if ($tableau_decode!=null) { 
                             for($i=0;$i<count($tableau_decode);$i++){
-                                echo  $tableau_decode[$i]."<br>";
-                            } 
-                        }?> tonnes</h4>
+                                echo  $tableau_decode[$i] ?> tonnes<br>
+                         <?php   } 
+                        }?> </h4>
                     </div>
                 </div>
             </div>
