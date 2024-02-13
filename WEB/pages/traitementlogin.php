@@ -3,7 +3,7 @@ include ('../inc/function.php');
 session_start();
 $mail=$_POST['mail'];
 $mdp=$_POST['mdp'];
-$login=login($mail,$mdp);
+$login=loginE($mail,$mdp);
 
 if($login==-1){
     header("Location:login.php");
