@@ -1,21 +1,25 @@
-<?php 
-    include '../../inc/function.php';
-    $tabmois=$_GET['tabmois'];
-    $idmois=array();
-    for ($i=0; $i <count($tabmois) ; $i++) { 
-        $idmois=$_GET['$i'];
-        if ($idmois==null) {
-            header('Location:gestion.php');
-        }
-        else{
-            insertSaison($idmois);
-            header('Location:../template.php?page=acceuil');
-        }
-    }
+<?php
+ include '../../inc/function.php';
+$casesCochées = array();
 
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
     
-
-   
+    if (!empty($_GET)) {
         
-    
+        foreach ($_GET as $key => $value) { 
+          
+            if (!empty($value)) {
+                
+                $casesCochées[] = $key;
+            }
+        }
+        insertSaisonALL($casesCochées);
+        header('Location:../template.php?page=acceuil');
+    } else {
+       
+        echo "Aucune case cochée.";
+    }
+}
+
 ?>

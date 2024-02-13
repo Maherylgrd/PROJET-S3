@@ -496,17 +496,24 @@ function calculatePayment($dateDebut, $dateFin, $idCueilleur) {
 
 
 
-function insertSaison($tabidmois){
-    $db= dbconnect();
-    $query="delete from saison ";
-    $stmt= mysqli_prepare($db, $query);
-    if(mysqli_stmt_execute($stmt)){
-        for($i=0;count($idmois);$i++){ 
-            $query2="insert into saison ("$tabidmois[$i]")values (%d)";
-            $result=mysqli_query($db,$query2);
+function insertSaisonALL($tabidmois){
+    $db = dbconnect();
+    $query = "DELETE FROM saison";
+    $result0 = mysqli_query($db, $query);
+    if ($result0) {
+        for ($i = 0; $i < count($tabidmois); $i++) {  // Correction de la condition de la boucle for
+            $query2 = "INSERT INTO saison (idmois) VALUES (" . $tabidmois[$i] . ")";
+            $result = mysqli_query($db, $query2);
+            if (!$result) {
+                echo "Erreur lors de l'insertion : " . mysqli_error($db);
+                // Vous pouvez choisir de sortir de la boucle ici si vous le souhaitez
+            }
         }
+    } else {
+        echo "Erreur lors de la suppression des saisons : " . mysqli_error($db);
     }
 
+ 
 }
 
 function deleteSaison($idMois) {
@@ -530,7 +537,7 @@ function deleteSaisonAll() {
     }
 }
 
-function insertSaison($idMois) {
+/*function insertSaison($idMois) {
     $query = "INSERT INTO saison (idmois) VALUES (%d)";
     $query = sprintf($query, $idMois);
     $result = mysqli_query(dbconnect(), $query);
@@ -539,7 +546,7 @@ function insertSaison($idMois) {
     } else {
         echo "Error inserting into 'saison': " . mysqli_error(dbconnect());
     }
-}
+}*/
 
 function selectAllSaison() {
     $db = dbconnect(); 
