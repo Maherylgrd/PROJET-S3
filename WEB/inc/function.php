@@ -569,7 +569,7 @@ function deletePaiment() {
     $result = mysqli_query(dbconnect(), $query);
 
     if ($result) {
-        echo "Deletion from 'paiement' successful.";
+       
     } else {
         echo "Error deleting from 'paiement': " . mysqli_error(dbconnect());
     }

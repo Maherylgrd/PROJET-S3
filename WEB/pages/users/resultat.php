@@ -7,13 +7,15 @@
 
 $totalPoid=isset($_GET['totalPoid']) ? $_GET['totalPoid'] : null;
     //2
-$totalRestantParcelle=isset($_GET['totalRestantParcelle']) ? $_GET['totalRestantParcelle'] : null;
+$totalRestantParcelleSerialized=isset($_GET['totalRestantParcelle']) ? $_GET['totalRestantParcelle'] : null;
+$totalRestantParcelle=unserialize(urldecode($totalRestantParcelleSerialized));
+//print_r($totalRestantParcelle);
     //3
 $montDep=isset($_GET['montDep']) ? $_GET['montDep'] : null;
     //4
 //$montVente=isset($_GET['montVente']) ? $_GET['montVente'] : null;
     //5
-$benef= isset($_GET['benef']) ? $_GET['benef'] : null;
+//$benef= isset($_GET['benef']) ? $_GET['benef'] : null;
     //6
 $coupderevient=isset($_GET['coupderevient']) ? $_GET['coupderevient'] : null;
     
@@ -66,9 +68,15 @@ $coupderevient=isset($_GET['coupderevient']) ? $_GET['coupderevient'] : null;
                 <h5 class="card-title mb-9 fw-semibold">Total Restant Par Parcelle</h5>
                 <div class="row align-items-center">
                     <div class="col-8">
-                        <h4 class="fw-semibold mb-3"><?php if ($totalRestantParcelle!=null) {
-                            echo $totalRestantParcelle;
-                        }  ?> tonnes</h4>
+                    <?php 
+                        for ($i=0; $i <count($totalRestantParcelle) ; $i++) { 
+                            ?>
+                            <h4 class="fw-semibold mb-3"> 
+                                <?php echo $totalRestantParcelle[$i]; ?>
+                            </h4>
+                    <?php    }
+                    ?>    
+                    
                     </div>
                 </div>
             </div>
@@ -89,21 +97,7 @@ $coupderevient=isset($_GET['coupderevient']) ? $_GET['coupderevient'] : null;
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
-            <!-- Yearly Breakup -->
-        <div class="card overflow-hidden">
-            <div class="card-body p-4">
-                <h5 class="card-title mb-9 fw-semibold">Benefice</h5>
-                <div class="row align-items-center">
-                    <div class="col-8">
-                        <h4 class="fw-semibold mb-3"><?php if ($benef!=null) {
-                            echo $benef;
-                        }  ?> </h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <div class="col-lg-4">
             <!-- Yearly Breakup -->
         <div class="card overflow-hidden">
