@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             }
         }
         insertSaisonALL($casesCochées);
-        header('Location:../template.php?page=acceuil');
+        header('Location:../template.php?page=admin/gestionSaison');
     } else {
        
         echo "Aucune case cochée.";

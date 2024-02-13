@@ -2,10 +2,18 @@
 include '../../inc/function.php';
 $dtDebut=$_GET["dateDebut"];
 $dtFin=$_GET["dateFin"];
-$tableCueilleur=getAllCueilleur();
 
-calculatePayment($dtDebut,$dtFin,1);
-//for ($i=0; $i <count($tableCueilleur) ; $i++) { 
+if ($dtDebut=="" || $dtFin=="") {
+    header('Location:listePaiementCueilleurs.php');
+}
+else{
+    $tableCueilleur=getAllCueilleur();
+    for ($i=0; $i <count($tableCueilleur) ; $i++) { 
+        calculatePayment($dtDebut,$dtFin,$tableCueilleur[$i]['idcueilleur']);
+    }    
+    
+    header('Location:../template.php?page=users/listePaiementsCueilleurs&statut=4');
+}
 
-//}
+
 ?>

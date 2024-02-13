@@ -7,6 +7,6 @@ if ($vrt=="" || $prix=="" ) {
 }
 else{ 
     insertPrixthe($vrt,$prix);
-    header('Location:../template.php?page=acceuil');
+    header('Location:../template.php?page=admin/prixVenteVariete');
 }
 ?>
