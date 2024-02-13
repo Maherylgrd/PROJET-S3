@@ -1,3 +1,6 @@
+<?php
+  include('../inc/function.php');
+?>
 <div id="ensemble">
     <div id="formulaire">
         <h2>Configuration minimale ...</h2>
