@@ -34,9 +34,9 @@ $prixdevente=selectAllPrixthe();
            <?php for ($i=0; $i < count($prixdevente); $i++) { ?>
            
             <tr>
-                <td><?php$prixdevente[$i]['idprixthe']?></td>
-                <td><?php$prixdevente[$i]['prixthe']?></td>
-                <td><?php$prixdevente[$i]['variete']?></td>
+                <td><?php echo $prixdevente[$i]['idprixthe']?></td>
+                <td><?php echo $prixdevente[$i]['prixthe']?></td>
+                <td><?php echo $prixdevente[$i]['variete']?></td>
             </tr>
      <?php   } ?>
        
