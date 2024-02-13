@@ -1,7 +1,7 @@
 <?php
 require('connection.php');
 
-function Login($mail,$mdp)  {
+function LoginE($mail,$mdp)  {
     $requette1="SELECT * FROM user WHERE email like '%s' ";
     $requette1=sprintf($requette1,$mail);
     //echo $requette1;
@@ -144,19 +144,31 @@ function insertresultat($poidtotalcueillette, $poidrestantparcelle, $coutrevient
 }
 
 function getStatutPersonne($id){
-    $requette1="SELECT * FROM user WHERE iduser='%s' ";
-    $requette1=sprintf($id);
-    $resultat1=mysqli_query(dbconnect(),$requette1);
-    $nb=mysqli_num_rows($resultat1);	
-    mysqli_free_result($resultat1);
-    if ($nb==0) {
+    $requete = "SELECT * FROM user WHERE iduser='%s'";
+    $requete = sprintf($requete, $id);
+
+    $resultat = mysqli_query(dbconnect(), $requete);
+
+    if (!$resultat) {
+        echo "Error in query: " . mysqli_error(dbconnect());
         return -1;
     }
-    while ($valiny=mysqli_fetch_assoc($resultat1)) {
-        $retour=$valiny['statut'];
-        return $retour;
-    }   
+
+    $nb = mysqli_num_rows($resultat);
+
+    if ($nb == 0) {
+        return -1;
+    }
+
+    while ($valiny = mysqli_fetch_assoc($resultat)) {
+        $retour = $valiny['statut'];
+    }
+
+    //mysqli_free_result($resultat);
+
+    return $retour;
 }
+
 function getAllThe() {
     $db = dbconnect(); 
     $query = "SELECT * FROM the";

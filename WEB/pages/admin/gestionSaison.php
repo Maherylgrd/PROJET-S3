@@ -1,6 +1,6 @@
 
 <?php
-include('../inc/function.php');
+//include('../inc/function.php');
 $tabMois = array(
     "janvier", "fevrier", "mars", "avril", "mai", "juin",
     "juillet", "aout", "septembre", "octobre", "novembre", "decembre"

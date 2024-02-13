@@ -1,5 +1,6 @@
 <?php 
 session_start();
+include('../inc/function.php');
 $iduser=$_SESSION['idUser'];
 $statut=getStatutPersonne($iduser);
 ?>
