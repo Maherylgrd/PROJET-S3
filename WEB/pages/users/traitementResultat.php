@@ -3,13 +3,18 @@
 
     $dateDebut=$_GET['dateDebut'];
     $dateFin=$_GET['dateFin'];
-
+    
+    
     $totalPoid=poids_total_parcelle_date($dateDebut,$dateFin);
     $totalRestantParcelle=poids_restant_parcelle_date($dateDebut,$dateFin);
-    echo $totalPoid."<br>";
+    $tableau=urlencode(serialize($totalRestantParcelle));
+    $coupderevient=calculer_cout_revient_par_kg($dateDebut,$dateFin);
     
-    for ($i=0; $i <count($totalRestantParcelle) ; $i++) { 
-        echo $totalRestantParcelle[$i]."<br>";        
-    }
-    header('Location:resultat.php?totpoid=')
+    
+
+    
+    header('Location:resultat.php?totalPoid='.$totalPoid.'&totalRestantParcelle='.$tableau.'&coupderevient='.$coupderevient);
+    
+
+    
 ?>

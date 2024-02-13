@@ -13,6 +13,10 @@
             <input type="number" class="form-control" id="montant" name="montant">
         </div>
 
+        <div class="mb-4">
+            <label for="dateCeuilleur" class="form-label">Date depenses</label>
+            <input type="date" class="form-control" id="datedepenses" name="datedepenses">
+        </div>
 
         <div class="mb-4">
             <input type="submit" class="btn form-control" value="valider">

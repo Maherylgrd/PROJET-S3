@@ -2,11 +2,12 @@
     include '../../inc/function.php';
     $idCategorieDepenses=$_GET['idCategorieDepenses'];
     $montant=$_GET['montant'];
-    if($idCategorieDepenses==null || $montant==null){
+    $datedepenses=$_GET['datedepenses'];
+    if($idCategorieDepenses==null || $montant==null || $datedepenses==null){
         header('Location:saisieDepenses.php');
     }
     else{
-        insertdepense($idCategorieDepenses,$montant);
+        insertdepense($idCategorieDepenses,$montant,$datedepenses);
         header('Location:../template.php?page=acceuil');
     }
 ?>
