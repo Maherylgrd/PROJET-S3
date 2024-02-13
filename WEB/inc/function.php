@@ -194,7 +194,7 @@ function getAllCueilleur() {
             $data[] = $row;
         }
     }
-    mysqli_close($db);
+    //mysqli_close($db);
     return $data;
 }
 function getAllCategorieDepense() {
@@ -233,7 +233,7 @@ function getAllResultat() {
             $data[] = $row;
         }
     }
-    mysqli_close($db);
+    //mysqli_close($db);
     return $data;
 }
 function getAllCueillette(){
@@ -246,7 +246,7 @@ function getAllCueillette(){
             $data[] = $row;
         }
     }
-    mysqli_close($db);
+    //mysqli_close($db);
     return $data;
 }
 function getAllDepense() {
@@ -259,26 +259,9 @@ function getAllDepense() {
             $data[] = $row;
         }
     }
-    mysqli_close($db);
+    //mysqli_close($db);
     return $data;
 }
-// function getTotalPoid() {
-//     $db = dbconnect(); 
-//     $query = "SELECT SUM(poids) as totalPoid FROM cueillette;";
-//     $result = mysqli_query($db, $query);
-//     $totalPoid = 0; 
-
-//     if ($result && mysqli_num_rows($result) > 0) {
-//         while ($row = mysqli_fetch_assoc($result)) {
-//             $totalPoid = $row['totalPoid'];
-//         }
-//     }
-
-//     //mysqli_free_result($result);
-//     //mysqli_close($db);
-
-//     return $totalPoid; 
-// }
 
 function poids_total_parcelle_date($date_debut, $date_fin) {
     $db = dbconnect(); 
@@ -300,30 +283,7 @@ function poids_total_parcelle_date($date_debut, $date_fin) {
     return $total_weight;
 }
 
-// function calculerPoidTotRestantParcelle() {
-//     $db = dbconnect(); 
 
-//     $query = "SELECT SUM(p.surface) AS surface_totale, IFNULL(SUM(c.poids), 0) AS poids_total
-//               FROM parcelle p
-//               LEFT JOIN cueillette c ON p.idparcelle = c.idparcelle";
-
-//     $result = mysqli_query($db, $query);
-
-//     $poidsTotalRestant = 0;
-
-//     if ($result && mysqli_num_rows($result) > 0) {
-//         $row = mysqli_fetch_assoc($result);
-//         $surfaceTotale = $row['surface_totale'];
-//         $poidsTotalCueillette = $row['poids_total'];
-
-//         $poidsTotalRestant = $surfaceTotale - $poidsTotalCueillette;
-//     }
-
-//     //mysqli_free_result($result);
-//     //mysqli_close($db);
-
-//     return $poidsTotalRestant;
-// }
 
 function poids_restant_parcelle_date($date_debut, $date_fin) {
     $db = dbconnect();
@@ -402,7 +362,7 @@ function selectAllPrixthe() {
         while ($row = mysqli_fetch_assoc($result)) {
             $data[] = $row;
         }
-        mysqli_free_result($result);
+       // mysqli_free_result($result);
     }
     return $data;
 }
@@ -432,7 +392,7 @@ function selectPoidsCueillette($dateDebut, $dateFin, $idCueilleteur) {
 }
 
 function selectRemuneration($id) {
-    $query = "SELECT * FROM remuneration WHERE idceuilleur = $id";
+    $query = "SELECT * FROM remuneration WHERE idcueilleur = $id";
     $result = mysqli_query(dbconnect(), $query);
     $data = array();
     if ($result && mysqli_num_rows($result) > 0) {
@@ -468,6 +428,21 @@ function selectNomCueilleur($idCueilleur) {
     }
 }
 
+function selectSalaireById($idsalaire) {
+    $query = "SELECT * FROM salaire WHERE idceuilleur = %d";
+    $query = sprintf($query, $idsalaire);
+
+    $result = mysqli_query(dbconnect(), $query);
+
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+        return $row;
+    } else {
+        echo "Error selecting from 'salaire': " . mysqli_error(dbconnect());
+        return null;
+    }
+}
+
 
 function calculatePayment($dateDebut, $dateFin, $idCueilleur) {
     $remuneration = selectRemuneration($idCueilleur);
@@ -479,7 +454,8 @@ function calculatePayment($dateDebut, $dateFin, $idCueilleur) {
     $paiementTotal = 0;
     $nombreJours = count($poidsCueillette);
     $poidsMinimum = $remuneration[0]['poidminimum'];
-    $salaire = $remuneration[0]['montant'];
+    $salaireALL = selectSalaireById($idCueilleur);
+    $salaire=$salaireALL['montant'];
     $bonus = $remuneration[0]['bonus'];
     $malus = $remuneration[0]['malus'];
     for ($i = 0; $i < $nombreJours; $i++) {
