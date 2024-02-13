@@ -32,7 +32,7 @@ create table parcelle(
     foreign key (idthe) references the (idthe)
 );
 
-
+insert into parcelle values(NULL,2000,1);
 
 create table cueilleur (
     idcueilleur int auto_increment primary key,
@@ -79,8 +79,8 @@ create table resultat(
 );
 
 create table remuneration(
-    idcueilleur int ,
-    foreign key (idcueilleur) references cueilleur (idcueilleur),
+    idceuilleur int ,
+    foreign key (idceuilleur) references cueilleur (idceuilleur);
     poidminimum double not null,
     bonus double not null,
     malus double not null
@@ -100,4 +100,7 @@ create table saison(
     idmois int check (idmois between 1 and 12)
 );
 
-insert into user values(null,'admin','admin',sha1('admin'),'admin@gmail.com',0);
+insert into user values(null,' Rakoto',' Andry',sha1('mdptest'),'Rakoto@gmail.com',0);
+insert into user values(null,'Randria','Hery',sha1('mdptest'),'Randria@gmail.com',1);
+
+insert into cueilleur values(NULL,'doda','H','2000-12-14');
