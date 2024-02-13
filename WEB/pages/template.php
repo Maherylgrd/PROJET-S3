@@ -98,6 +98,22 @@ session_start();
                 <span class="hide-menu">Gestion Saison</span>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="template.php?page=admin/configuration" aria-expanded="false">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Configuration Minimale</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="template.php?page=admin/prixVenteVarieteThe" aria-expanded="false">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Gestion Vente Variete de the</span>
+              </a>
+            </li>
             <!-- boutons users -->
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -117,6 +133,14 @@ session_start();
                   <i class="ti ti-alert-circle"></i>
                 </span>
                 <span class="hide-menu">Saisie depenses</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="template.php?page=users/listePaiementsCueilleurs" aria-expanded="false">
+                <span>
+                  <i class="ti ti-alert-circle"></i>
+                </span>
+                <span class="hide-menu">listes Paiement par Cueilleurs</span>
               </a>
             </li>
             <li class="sidebar-item">
