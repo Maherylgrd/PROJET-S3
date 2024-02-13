@@ -12,13 +12,13 @@ $tabidmois=selectAllSaison();
     <div id="formulaire">
         <h2>Insertion Saison</h2>
         <form action="admin/traitementSaison.php" method="get">
-        <div class=" col-md-12 mb-4">
+        <div class=" col-md-12 row">
         <?php 
             for ($i=0; $i <count($tabMois) ; $i++) { 
                 $idmois=$i+1;
                 ?>
                 
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-sm-4 col-xs-4" style="margin: 0.5em 0;font-size:1.2em;color:#000;">
                         <input type="checkbox" name="<?php echo $idmois; ?>"> <label > <?php echo $tabMois[$i] ?></label>
                     </div>
                     
@@ -26,7 +26,7 @@ $tabidmois=selectAllSaison();
         <?php    }
         ?>
         </div>
-        <div class="  mt-2 ">
+        <div class="col-lg-12" style="margin: 2em;">
             <button type="submit" class="btn btn-primary w-25">Valider</button>
         </div>
                       
