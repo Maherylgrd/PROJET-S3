@@ -1,3 +1,7 @@
+<?php
+    //if (isset($_GET("statut"))==null) {
+    //}    
+?>
 <div id="ensemble" class="row">
     <h1>Resultats</h1>
 
@@ -24,22 +28,33 @@
         <h2>Tableau Gestion Variete de The</h2>
         <table class="table table-hover">
             <tr>
-                <th>Date</th>
+                <th>Date </th>
                 <th>Nom cueilleur</th>
-                <th>Poids</th>
+                <th>Poids Cueilli</th>
                 <th>%bonus</th>
                 <th>%mallus</th>
                 <th>montant paiement</th>
             </tr>
-           
+        <?php
+        if (isset($_GET['statut'])!=null) {
+            $tabPai=getAllPaiement();
+            for ($i=0; $i <count($tabPai) ; $i++) { 
+            ?>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td><?php echo $tabPai[$i]['datecueillette']; ?></td>
+                <td><?php echo $tabPai[$i]['nom']; ?></td>
+                <td><?php echo $tabPai[$i]['poidcueilli']; ?></td>
+                <td><?php echo $tabPai[$i]['bonus']; ?></td>
+                <td><?php echo $tabPai[$i]['mallus']; ?></td>
+                <td><?php echo $tabPai[$i]['paiement']; ?></td>
             </tr>
+    <?php    }  }
+    else {
+        deletePaiment();
+        
+    }
+        ?>   
+            
        
         </table>
 

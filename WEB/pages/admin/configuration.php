@@ -1,5 +1,7 @@
 <?php
-  include('../inc/function.php');
+  //include('../inc/function.php');
+  
+  $id=$_SESSION['idUser'];
   $remuneration=selectRemuneration($id);
   ?>
 <div id="ensemble">
@@ -48,12 +50,18 @@
         <h2>Tableau remuneration</h2>
         <table class="table table-hover">
             <tr>
-                <th>id Mois</th>
+                <th>id Cueilleur</th>
+                <th>Poid minimum</th>
+                <th>Bonus</th>
+                <th>Malus</th>
             </tr>
-            <?php for( $i=0;$i<count($tabidmois);$i++){
+            <?php for( $i=0;$i<count($remuneration);$i++){
             ?>
             <tr>
-            <td><?php echo $tabidmois[$i]['idmois'] ?></td>
+            <td><?php echo $remuneration[$i]['idcueilleur'] ?></td>
+            <td><?php echo $remuneration[$i]['poidminimum'] ?></td>
+            <td><?php echo $remuneration[$i]['bonus'] ?></td>
+            <td><?php echo $remuneration[$i]['malus'] ?></td>
                 
             </tr>
             <?php } ?>
@@ -61,3 +69,5 @@
 
     </div>
 </div>
+
+

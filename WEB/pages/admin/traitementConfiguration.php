@@ -9,7 +9,7 @@ if ($idcueilleur=="" || $pmj=="" || $bonus=="" || $malus=="") {
 }
 else{ 
     insertRemuneration($idcueilleur,$pmj,$bonus,$malus);
-    header('Location:../template.php?page=acceuil');
+    header('Location:../template.php?page=admin/configuration');
 }
 
 

@@ -1,5 +1,5 @@
 <?php
-//include('../inc/function.php');
+// include('../inc/function.php');
 $prixdevente=selectAllPrixthe();
 ?>
 <div id="ensemble">
@@ -29,12 +29,16 @@ $prixdevente=selectAllPrixthe();
             <tr>
                 <th> Id The </th>
                 <th> Prix </th>
+                <th> Variete </th>
             </tr>
+           <?php for ($i=0; $i < count($prixdevente); $i++) { ?>
            
             <tr>
-                <td></td>
-                <td></td>
+                <td><?php echo $prixdevente[$i]['idprixthe']?></td>
+                <td><?php echo $prixdevente[$i]['prixthe']?></td>
+                <td><?php echo $prixdevente[$i]['variete']?></td>
             </tr>
+     <?php   } ?>
        
         </table>
 

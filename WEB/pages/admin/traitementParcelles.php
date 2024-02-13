@@ -7,7 +7,7 @@
     }
     else{
         insertparcelle($surface,$idthe);
-        header('Location:../template.php?page=acceuil');
+        header('Location:../template.php?page=admin/gestionParcelles');
     }
     
 ?>

@@ -1,12 +1,12 @@
 <?php 
     include '../../inc/function.php';
     $categorieDepense=$_GET['categorieDepense'];
-    if ($categorieDepense==null ) {
+    if ($categorieDepense=="" ) {
         header('Location:gestionCategoriedepenses.php');
     }
     else{
         insertcategoriedepense($categorieDepense);
-        header('Location:../template.php?page=acceuil');
+        header('Location:../template.php?page=admin/gestionCategorieDepenses');
     }
     
 ?>
