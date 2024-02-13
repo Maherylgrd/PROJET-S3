@@ -3,7 +3,7 @@
 
 
 <div id="form">
-    <form class="form-inline" action="users/traitementResultat.php" method="get">
+    <form class="form-inline" action="users/traitementListePayement.php" method="get">
     <div class="row">
             <div class=" form-group col-lg-4 col-md-4 col-sm-8 col-xs-10">
                 <label for="dateDebut" >Date debut</label>

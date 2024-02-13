@@ -1,5 +1,5 @@
 <?php 
-include('../inc/function.php');
+//include('../inc/function.php');
 $totalPoid = isset($_GET['totalPoid']) ? $_GET['totalPoid'] : null;
 $totalRestantParcelle = isset($_GET['totalRestantParcelle']) ? $_GET['totalRestantParcelle'] : null;
 $coutDeRevient = isset($_GET['coupderevient']) ? $_GET['coupderevient'] : null;

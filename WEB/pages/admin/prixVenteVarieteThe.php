@@ -1,5 +1,5 @@
 <?php
-include('../inc/function.php');
+//include('../inc/function.php');
 $prixdevente=selectAllPrixthe();
 ?>
 <div id="ensemble">

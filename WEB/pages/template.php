@@ -1,5 +1,8 @@
 <?php 
 session_start();
+include('../inc/function.php');
+$iduser=$_SESSION['idUser'];
+$statut=getStatutPersonne($iduser);
 ?>
 <!doctype html>
 <html lang="en">
@@ -8,10 +11,10 @@ session_start();
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>acceuil</title>
-  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
+  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/images.jpg" />
   <link rel="stylesheet" href="../assets/css/styles.min.css" />
   <link rel="stylesheet" href="../assets/css/file.css" />
-
+  <!-- <link rel="stylesheet" href="../assets/css/style.css" /> -->
 </head>
 
 <body>
@@ -45,6 +48,7 @@ session_start();
                 <span class="hide-menu">Acceuil</span>
               </a>
             </li>
+            <?php if($statut==0){ ?>
             <!-- Boutons Admin -->
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -114,6 +118,7 @@ session_start();
                 <span class="hide-menu">Gestion Vente Variete de the</span>
               </a>
             </li>
+            <?php }?>
             <!-- boutons users -->
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -222,7 +227,7 @@ session_start();
                       <i class="ti ti-list-check fs-6"></i>
                       <p class="mb-0 fs-3">My Task</p>
                     </a>
-                    <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                    <a href="logout.php" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                   </div>
                 </div>
               </li>

@@ -1,5 +1,5 @@
 <?php
-include('../inc/function.php');
+//include('../inc/function.php');
 $tabParcelle=getAllParcelle();
 ?>
 <div id="ensemble">
