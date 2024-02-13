@@ -4,7 +4,7 @@ include('../inc/function.php');
 <div id="ensemble">
     <div id="formulaire">
         <h2>Insertion Prix de Vente par Variation de Thé</h2>
-        <form action="admin/traitementThe.php" method="get">
+        <form action="admin/traitementVenteVarieteThe.php" method="get">
         <div class="mb-4">
             <label for="variete" class="form-label">Nom variete de the</label>
             <input type="text" class="form-control" id="variete" name="variete">

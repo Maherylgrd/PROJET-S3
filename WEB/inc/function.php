@@ -380,16 +380,18 @@ function calculer_cout_revient_par_kg($date_debut, $date_fin) {
     mysqli_stmt_close($stmt);
     return $cout_revient_par_kg;
 }
-function insertPrixthe($idthe, $prixthe) {
-    $query = "INSERT INTO prixthe (idthe, prixthe) VALUES (%d, %.2f)";
-    $query = sprintf($query, $idthe, $prixthe);
+function insertPrixThe($variete, $prixthe) {
+    $query = "INSERT INTO prixthe (variete, prixthe) VALUES ('%s', %.2f)";
+    $query = sprintf($query, $variete, $prixthe);
     $result = mysqli_query(dbconnect(), $query);
+
     if ($result) {
         echo "Insertion into 'prixthe' successful.";
     } else {
         echo "Error inserting into 'prixthe': " . mysqli_error(dbconnect());
     }
 }
+
 
 function selectAllPrixthe() {
     $db = dbconnect(); 

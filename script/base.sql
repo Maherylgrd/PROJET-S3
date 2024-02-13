@@ -20,8 +20,7 @@ create table the(
 
 create table prixthe(
     idprixthe int auto_increment primary key,
-    idthe int,
-    foreign key (idthe) references the (idthe),
+    variete varchar(256) not null ,
     prixthe double not null
 
 );
