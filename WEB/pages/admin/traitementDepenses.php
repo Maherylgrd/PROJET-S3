@@ -6,7 +6,7 @@
     }
     else{
         insertcategoriedepense($categorieDepense);
-        header('Location:../template.php?page=acceuil');
+        header('Location:../template.php?page=admin/gestionCategorieDepenses');
     }
     
 ?>

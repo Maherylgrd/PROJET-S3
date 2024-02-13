@@ -9,6 +9,6 @@
 
     else{ 
         insertcueilleur($nom,$genre,$dtn);
-        header('Location:../template.php?page=acceuil');
+        header('Location:../template.php?page=admin/gestionCueilleur');
     }
 ?>

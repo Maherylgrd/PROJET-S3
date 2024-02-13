@@ -297,7 +297,7 @@ function poids_total_parcelle_date($date_debut, $date_fin) {
 
 
 
-function poids_restant_parcelle_date($date_debut, $date_fin) {
+function poids_restant_parcelle_dateOLD($date_debut, $date_fin) {
     $db = dbconnect();
     
     $query = "SELECT 
@@ -325,7 +325,7 @@ function poids_restant_parcelle_date($date_debut, $date_fin) {
     return $data;
 }
 
-function calculer_cout_revient_par_kg($date_debut, $date_fin) {
+function calculer_cout_revient_par_kgOLD($date_debut, $date_fin) {
     $db = dbconnect();
     
     $query = "SELECT 
@@ -564,4 +564,184 @@ function insertdeletesaison($tab){
     }
 }    
 
+function deletePaiment() {
+    $query = "DELETE FROM paiement";
+    $result = mysqli_query(dbconnect(), $query);
+
+    if ($result) {
+        echo "Deletion from 'paiement' successful.";
+    } else {
+        echo "Error deleting from 'paiement': " . mysqli_error(dbconnect());
+    }
+}
+
+
+
+function getAllPaiement() {
+    $query = "SELECT * FROM paiement";
+    $result = mysqli_query(dbconnect(), $query);
+
+    if (!$result) {
+        echo "Error in query: " . mysqli_error(dbconnect());
+        return null;
+    }
+
+    $paiements = array();
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $paiements[] = $row;
+    }
+
+   // mysqli_free_result($result);
+
+    return $paiements;
+}
+
+
+//RESULTAT  
+
+
+
+function poids_restant_parcelle_date($min, $max) {
+    $db = dbconnect();
+
+    
+    $query = "SELECT 
+    SUM((th.rendement * p.surface * 10000 / th.occupation)) - COALESCE(SUM(c.poids), 0) AS poids_restant
+    FROM 
+        parcelle p
+    JOIN 
+        the th ON p.idthe = th.idthe
+    LEFT JOIN 
+        cueillette c ON p.idparcelle = c.idparcelle
+    WHERE 
+        c.datecueillette <= '%s'
+        AND MONTH(c.datecueillette) >= (SELECT idmois FROM saison WHERE idmois <= MONTH('%s') ORDER BY idmois DESC LIMIT 1);";
+
+    $query=sprintf($query,$max,$max);    
+
+    echo $query;
+
+    $result = mysqli_query($db, $query);
+    $data =null;
+    
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data = $row['poids_restant'];
+        }
+    }
+    
+    return $data;
+}
+
+
+
+function calculer_cout_revient_par_kg($date_debut, $date_fin) {
+    $db = dbconnect();
+    
+    $query = "SELECT 
+                SUM(d.montant) / SUM(c.poids) AS cout_revient_par_kg
+              FROM 
+                depense d
+              LEFT JOIN 
+                cueillette c ON d.datedepense = c.datecueillette
+              WHERE 
+                d.datedepense BETWEEN ? AND ?";
+    
+    $stmt = mysqli_prepare($db, $query);
+    mysqli_stmt_bind_param($stmt, "ss", $date_debut, $date_fin);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    
+    $cout_revient_par_kg = 0;
+    
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $cout_revient_par_kg = $row['cout_revient_par_kg'];
+    }
+    
+    mysqli_stmt_close($stmt);
+    return $cout_revient_par_kg;
+}
+
+function sumDep() {
+    $query = "SELECT SUM(montant) AS total FROM depense ";
+   
+    $result = mysqli_query(dbconnect(), $query);
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $total = $row['total'];
+        mysqli_free_result($result);
+        return $total;
+    } else {
+        return 0;
+    }
+}
+
+function totalSalaireCueilleurs() {
+    $db = dbconnect();
+
+    $query = "SELECT SUM(montant) AS total_salaire
+              FROM salaire
+              WHERE idceuilleur IN (SELECT DISTINCT idceuilleur FROM cueillette)";
+
+    $result = mysqli_query($db, $query);
+
+    $totalSalaire = 0;
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $totalSalaire = $row['total_salaire'];
+    }
+
+    return $totalSalaire;
+}
+
+function sumPoidsCueillis() {
+    $db = dbconnect();
+
+    $query = "SELECT SUM(poids) AS total_poids
+              FROM cueillette";
+
+    $result = mysqli_query($db, $query);
+
+    $totalPoids = 0;
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $totalPoids = $row['total_poids'];
+    }
+
+    return $totalPoids;
+}
+
+
+
+
+/*function TotalVentes($dateDebut, $dateFin) {
+    $query = "SELECT SUM(c.poids * pt.prixthe) AS montant_total_ventes
+              FROM cueillette c
+              JOIN parcelle p ON c.idparcelle = p.idparcelle
+              JOIN prixthe pt ON p.idthe = pt.idthe
+              JOIN the t ON p.idthe = t.idthe
+              WHERE c.datecueillette BETWEEN '$dateDebut' AND '$dateFin'";
+    $result = mysqli_query(dbconnect(), $query);
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+        $totalSales = $row['montant_total_ventes'];
+        mysqli_free_result($result);
+        return $totalSales;
+    } else {
+        echo "Erreur lors de l'exécution de la requête : " . mysqli_error(dbconnect());
+        return false;
+    }
+}*/
+function calculateBenefice($dateDebut, $dateFin) {
+    //$totalVentes = TotalVentes($dateDebut, $dateFin);
+    //$totalDepenses = totalDepenses($dateDebut, $dateFin);
+    //$benefice = 1000 - $totalDepenses;
+    return 0;
+}
+
+
+
 ?>
+

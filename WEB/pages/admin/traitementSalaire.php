@@ -7,7 +7,7 @@
     }
     else{
         insertsalaire($idCeuilleur,$montant);
-        header('Location:../template.php?page=acceuil');
+        header('Location:../template.php?page=admin/configurationSalaire');
 
     }
     

@@ -9,6 +9,6 @@
 
     else{ 
         insertthe($variete,$occupation,$rendement);
-        header('Location:../template.php?page=acceuil');
+        header('Location:../template.php?page=admin/gestionThe');
     }
 ?>
