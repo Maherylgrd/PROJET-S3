@@ -468,6 +468,21 @@ function selectNomCueilleur($idCueilleur) {
     }
 }
 
+function selectSalaireById($idsalaire) {
+    $query = "SELECT * FROM salaire WHERE idceuilleur = %d";
+    $query = sprintf($query, $idsalaire);
+
+    $result = mysqli_query(dbconnect(), $query);
+
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+        return $row;
+    } else {
+        echo "Error selecting from 'salaire': " . mysqli_error(dbconnect());
+        return null;
+    }
+}
+
 
 function calculatePayment($dateDebut, $dateFin, $idCueilleur) {
     $remuneration = selectRemuneration($idCueilleur);
@@ -479,7 +494,8 @@ function calculatePayment($dateDebut, $dateFin, $idCueilleur) {
     $paiementTotal = 0;
     $nombreJours = count($poidsCueillette);
     $poidsMinimum = $remuneration[0]['poidminimum'];
-    $salaire = $remuneration[0]['montant'];
+    $salaireALL = selectSalaireById($idCueilleur);
+    $salaire=$salaireALL['montant'];
     $bonus = $remuneration[0]['bonus'];
     $malus = $remuneration[0]['malus'];
     for ($i = 0; $i < $nombreJours; $i++) {
