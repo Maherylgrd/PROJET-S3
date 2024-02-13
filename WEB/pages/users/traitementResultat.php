@@ -13,7 +13,7 @@
     
 
     
-    header('Location:resultat.php?totalPoid='.$totalPoid.'&totalRestantParcelle='.$tableau.'&coupderevient='.$coupderevient);
+    header('Location:../template.php?page=users/resultat&totalPoid='.$totalPoid.'&totalRestantParcelle='.$tableau.'&coupderevient='.$coupderevient);
     
 
     
