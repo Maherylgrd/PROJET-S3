@@ -1,6 +1,7 @@
 <?php
-  //include('../inc/function.php');
-?>
+  include('../inc/function.php');
+  $remuneration=selectRemuneration($id);
+  ?>
 <div id="ensemble">
     <div id="formulaire">
         <h2>Configuration minimale ...</h2>
@@ -43,4 +44,20 @@
     </div>
     </form>
 </div>
+<div id="tableau">
+        <h2>Tableau remuneration</h2>
+        <table class="table table-hover">
+            <tr>
+                <th>id Mois</th>
+            </tr>
+            <?php for( $i=0;$i<count($tabidmois);$i++){
+            ?>
+            <tr>
+            <td><?php echo $tabidmois[$i]['idmois'] ?></td>
+                
+            </tr>
+            <?php } ?>
+        </table>
+
+    </div>
 </div>
