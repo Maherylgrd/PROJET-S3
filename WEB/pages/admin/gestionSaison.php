@@ -16,7 +16,7 @@ $tabMois = array(
                 ?>
                 
                     <div class="col-md-3">
-                        <input type="checkbox" name="<?php echo $tabMois[$i] ?>"> <label > <?php echo $tabMois[$i] ?></label>
+                        <input type="checkbox" name="<?php echo count($tabMois)+1; ?>"> <label > <?php echo $tabMois[$i] ?></label>
                     </div>
                     
                 
