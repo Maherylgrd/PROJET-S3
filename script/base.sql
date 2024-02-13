@@ -7,7 +7,7 @@ create table user(
     nom varchar(256) not null,
     prenom varchar(256) not null,
     mdp varchar(256) not null,
-    email varchar(256),
+    email varchar(256) not null unique,
     statut int check (statut between 0 and 1)
 );
 
@@ -18,6 +18,14 @@ create table the(
     rendement double not null
 );
 
+create table prixthe(
+    idprixthe int auto_increment primary key,
+    idthe int,
+    foreign key (idthe) references the (idthe),
+    prixthe double not null
+
+);
+
 create table parcelle(
     idparcelle int auto_increment primary key,
     surface double not null,
@@ -25,10 +33,12 @@ create table parcelle(
     foreign key (idthe) references the (idthe)
 );
 
+insert into parcelle values(NULL,2000,1);
+
 create table cueilleur (
     idcueilleur int auto_increment primary key,
     nom varchar (256),
-    genre varchar(10) ,
+    genre varchar(10),
     datenaissance date
 );
 
@@ -54,12 +64,12 @@ create table cueillette(
     poids double 
 );
 
-create table depense (
+create table depense(
     iddep int auto_increment primary key,
     idcategoriedepense int,
     foreign key (idcategoriedepense) references categoriedepense (idcategoriedepense),
-    datedepense date,
-    montant double not null
+    montant double not null,
+    datedepense date 
 );
 
 create table resultat(
@@ -69,5 +79,29 @@ create table resultat(
     coutrevient double not null
 );
 
-insert into user values(default,'Rakoto','Andry',SHA1('mdptest'),'rakoto@gmail.com',0);
-insert into user values(default,'Rabe','Hery',SHA1('mdptest'),'rabe@gmail.com',1);
+create table remuneration(
+    idceuilleur int ,
+    foreign key (idceuilleur) references cueilleur (idceuilleur);
+    poidminimum double not null,
+    bonus double not null,
+    malus double not null
+);
+
+create table paiement(
+    datecueillette date not null,
+    nom varchar(256) not null,
+    poidcueilli double not null,
+    bonus double not null,
+    mallus double not null,
+    paiement double not null
+
+);
+
+create table saison(
+    idmois int check (statut between 1 and 12)
+);
+
+insert into user values(null,'admin','admin',sha1('admin'),'admin@gmail.com',0);
+insert into user values(null,'normal','normal',sha1('normal'),'normal@gmail.com',1);
+
+insert into cueilleur values(NULL,'doda','H','2000-12-14');
