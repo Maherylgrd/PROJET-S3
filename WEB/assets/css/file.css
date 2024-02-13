@@ -10,9 +10,16 @@ footer{
     width: 100%;
 }
 
-/* input [submit]{
-    background-color: #64a660 ;
-} */
+#acceuil{
+    background-size:contain;
+    background-repeat: repeat;
+    height: 40em;
+    color: #000;
+}
+#acceuil h1,h5{
+    color: #000;
+    font-size: 5em;
+}
 
 .bouton{
     background-color: #668764 ;

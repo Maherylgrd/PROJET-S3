@@ -1,5 +1,6 @@
 <?php
 include('../inc/function.php');
+$prixdevente=selectAllPrixthe();
 ?>
 <div id="ensemble">
     <div id="formulaire">

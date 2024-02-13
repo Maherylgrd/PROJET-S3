@@ -1,9 +1,11 @@
 
 <?php
+include('../inc/function.php');
 $tabMois = array(
     "janvier", "fevrier", "mars", "avril", "mai", "juin",
     "juillet", "aout", "septembre", "octobre", "novembre", "decembre"
 );
+$tabidmois=selectAllSaison();
 ?>
 
 <div id="ensemble">
@@ -31,5 +33,21 @@ $tabMois = array(
     </div>
     </form>
 </div>
+<div id="tableau">
+        <h2>Tableau saison</h2>
+        <table class="table table-hover">
+            <tr>
+                <th>id Mois</th>
+            </tr>
+            <?php for( $i=0;$i<count($tabidmois);$i++){
+            ?>
+            <tr>
+            <td><?php echo $tabidmois[$i]['idmois'] ?></td>
+                
+            </tr>
+            <?php } ?>
+        </table>
+
+    </div>
 
 </div>
