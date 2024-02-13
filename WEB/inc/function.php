@@ -443,7 +443,7 @@ function selectRemuneration($id) {
 }
 
 function insertRemuneration($idCueilleur, $poidsMinimum, $bonus, $malus) {
-    $query = "INSERT INTO remuneration (idcueilleur, poids_minimum, bonus, malus) VALUES (%d, %.2f, %.2f, %.2f)";
+    $query = "INSERT INTO remuneration (idcueilleur, poidminimum, bonus, malus) VALUES (%d, %.2f, %.2f, %.2f)";
     $query = sprintf($query, $idCueilleur, $poidsMinimum, $bonus, $malus);
     $result = mysqli_query(dbconnect(), $query);
     if ($result) {
