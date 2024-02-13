@@ -38,11 +38,11 @@ session_start();
               <span class="hide-menu">Home</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./index.html" aria-expanded="false">
+              <a class="sidebar-link" href="template.php?page=acceuil" aria-expanded="false">
                 <span>
                   <i class="ti ti-layout-dashboard"></i>
                 </span>
-                <span class="hide-menu">Dashboard</span>
+                <span class="hide-menu">Acceuil</span>
               </a>
             </li>
             <!-- Boutons Admin -->
